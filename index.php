@@ -1,25 +1,16 @@
 <?php
 
-	require_once('constants.php');
 
-	//echo 'Trying MySQL Connection...';
+	require_once('include.php');
 
-	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	// Get Devices.
 
-	if ($mysqli->connect_errno) {
-		echo 'Failed to connect to MySQL: ' . $mysqli->connect_error;
-	}
+	$devices = raw_devices();
 
 
-	//echo 'Success!';
+	// Get Messages.
 
-
-	$devices = [];
-
-	$res = $mysqli->query('SELECT * FROM devices');
-	while ($row = $res->fetch_assoc()) {
-		array_push($devices, $row);
-	}
+	$messages = raw_messages();
 
 	//o($devices);
 
@@ -56,6 +47,8 @@ th, td {
 	</head>
 	<body>
 		<h1>TAN Messaging App</h1>
+
+		<!-- List all Devices. -->
 		<h2>Devices</h2>
 		<table>
 			<tr>
@@ -77,17 +70,41 @@ th, td {
 
 			?>
 		</table>
+
+		<!-- List all Messages. -->
+		<h2>Messages</h2>
+		<table>
+			<tr>
+				<th>Message ID</th>
+				<th>Message Type</th>
+				<th>Sender Device ID</th>
+				<th>Recipient Device ID</th>
+				<th>Data Text</th>
+				<th>Data Voice</th>
+				<th>Timestamp</th>
+			</tr>
+			<?php
+
+			foreach ($messages as $message) {
+				?>
+				<tr>
+					<td><?php echo $message['id']; ?></td>
+					<td><?php echo $message['type']; ?></td>
+					<td><?php echo $message['sender_device_id']; ?></td>
+					<td><?php echo $message['recipient_device_id']; ?></td>
+					<td><?php echo $message['data_text']; ?></td>
+					<td><?php echo $message['data_voice']; ?></td>
+					<td><?php echo $message['timestamp']; ?></td>
+				</tr>
+				<?php
+			}
+
+			?>
+		</table>
+
+
+
 	</body>
 
 
 </html>
-
-<?php
-
-function o($obj) {
-	echo '<br><br><pre><code>';
-	var_dump($obj);
-	echo '<br><br><pre><code>';
-}
-
-?>
