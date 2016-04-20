@@ -2,7 +2,7 @@
 
 	require_once('constants.php');
 
-	echo 'Trying MySQL Connection...';
+	//echo 'Trying MySQL Connection...';
 
 	$mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
@@ -11,7 +11,7 @@
 	}
 
 
-	echo 'Success!';
+	//echo 'Success!';
 
 
 	$devices = [];
@@ -30,6 +30,10 @@
 		<title>TAN Messaging App</title>
 
 <style>
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Arial, Helvetica, sans-serif;
+}
 
 table {
 	border-collapse: collapse;
