@@ -17,6 +17,12 @@ function o($obj) {
 	echo '<br><br><pre><code>';
 }
 
+function pre($str) {
+	echo '<pre><code>';
+	echo $str;
+	echo '<pre><code>';
+}
+
 
 
 function raw_devices() {
