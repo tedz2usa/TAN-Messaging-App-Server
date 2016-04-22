@@ -9,21 +9,25 @@ require_once('include.php');
 // }
 
 
-echo 'post data: ';
-o($_POST);
+//echo 'post data: ';
+//o($_POST);
 
 
 $headers = getallheaders();
 
 if ($headers['Content-Type'] == 'application/json') {
-	o('detected json data.');
+	//o('detected json data.');
 
-	$obj = parse_json_body();
+	$data = parse_json_body();
 	// o($body);
-	o($obj);
+	//o($data);
+	$new_device = insert_new_device($data);
+	echo json_encode($new_device, JSON_PRETTY_PRINT);
 
 
+} else {
+	echo json_encode(raw_devices(), JSON_PRETTY_PRINT);
 }
 
-echo json_encode(raw_devices(), JSON_PRETTY_PRINT);
+
 

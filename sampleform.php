@@ -6,7 +6,7 @@ $headers = getallheaders();
 
 o($headers);
 
-if ()
+//if ()
 
 
 
