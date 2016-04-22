@@ -14,42 +14,57 @@ if ($mysqli->connect_errno) {
 function o($obj) {
 	echo '<br><br><pre><code>';
 	var_dump($obj);
-	echo '<br><br><pre><code>';
+	echo '</code></pre><br><br>';
 }
 
 function pre($str) {
 	echo '<pre><code>';
 	echo $str;
-	echo '<pre><code>';
+	echo '</code></pre>';
 }
 
-
-
-function raw_devices() {
+function raw_select($tablename, $append_clause='') {
 	global $mysqli;
 
-	$devices = [];
+	$collection = [];
 
-	$res = $mysqli->query('SELECT * FROM devices');
+	$res = $mysqli->query('SELECT * FROM ' . $tablename . ' ' . $append_clause);
 	while ($row = $res->fetch_assoc()) {
-		array_push($devices, $row);
+		array_push($collection, $row);
 	}
 
+	return $collection;
+}
+
+function raw_devices() {
+
+	$devices = raw_select('devices');
 	return $devices;
 
 }
 
 function raw_messages() {
-	global $mysqli;
 
-	$messages = [];
-
-	$res = $mysqli->query('SELECT * FROM messages');
-	while ($row = $res->fetch_assoc()) {
-		array_push($messages, $row);
-	}
-
+	$messages = raw_select('messages');
 	return $messages;
+	
+}
 
+
+function expand_device($device) {
+
+}
+
+
+function expand_message($messsage) {
+
+}
+
+
+// HTTP Helper methods
+function parse_json_body($as_assoc=true) {
+	$body = file_get_contents('php://input');
+	$obj = json_decode($body, $as_assoc);
+	return $obj;
 }
 
