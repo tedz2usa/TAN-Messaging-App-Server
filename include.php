@@ -2,6 +2,11 @@
 
 require_once('constants.php');
 
+// Set the timezone.
+
+date_default_timezone_set('America/New_York');
+
+
 //echo 'Trying MySQL Connection...';
 
 $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
@@ -66,17 +71,24 @@ function data_to_insert_sql_clause($data) {
 	return $clause;
 }
 
-function raw_devices() {
+function raw_devices($append_clause='') {
 
-	$devices = raw_select('devices');
+	$devices = raw_select('devices', $append_clause);
 	return $devices;
 
 }
 
-function raw_messages() {
+function raw_messages($append_clause='') {
 
-	$messages = raw_select('messages');
+	$messages = raw_select('messages', $append_clause);
 	return $messages;
+
+}
+
+function raw_dbpurges($append_clause='') {
+
+	$dbpurges = raw_select('dbpurges', $append_clause);
+	return $dbpurges;
 
 }
 
@@ -90,6 +102,11 @@ function raw_message($id) {
 	return $message;
 }
 
+function raw_dbpurge($id) {
+	$dbpurge = raw_select('dbpurges', 'WHERE id=' . $id)[0];
+	return $dbpurge;
+}
+
 function insert_new_device($data) {
 	$new_id = raw_insert('devices', $data);
 	return raw_device($new_id);
@@ -98,6 +115,13 @@ function insert_new_device($data) {
 function insert_new_message($data) {
 	$new_id = raw_insert('messages', $data);
 	return raw_message($new_id);
+}
+
+function insert_new_dbpurge() {
+	$empty_data = [];
+	$empty_data['id'] = '';
+	$new_id = raw_insert('dbpurges', $empty_data);
+	return raw_dbpurge($new_id);
 }
 
 function expand_device($device) {
@@ -115,5 +139,11 @@ function parse_json_body($as_assoc=true) {
 	$body = file_get_contents('php://input');
 	$obj = json_decode($body, $as_assoc);
 	return $obj;
+}
+
+function gettime($mysql_string, $format='F j, Y \a\t g:ia') { // \a\n\d s \s\e\c\o\n\d\s
+	$date = new DateTime($mysql_string, new DateTimeZone('America/Los_Angeles'));
+	$date->setTimezone(new DateTimeZone('America/New_York'));
+	return $date->format($format);
 }
 

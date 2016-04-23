@@ -16,15 +16,9 @@ require_once('include.php');
 $headers = getallheaders();
 
 if ($headers['Content-Type'] == 'application/json') {
-	//o('detected json data.');
-
 	$data = parse_json_body();
-	// o($body);
-	//o($data);
 	$new_device = insert_new_device($data);
 	echo json_encode($new_device, JSON_PRETTY_PRINT);
-
-
 } else {
 	echo json_encode(raw_devices(), JSON_PRETTY_PRINT);
 }

@@ -1,18 +1,30 @@
 <?php
 
 
-	require_once('include.php');
-
-	// Get Devices.
-
-	$devices = raw_devices();
+require_once('include.php');
 
 
-	// Get Messages.
+// Check for DB Reset
+if (isset($_GET['resetdb'])) {
+	//$sql = 'DELETE FROM devices WHERE id>3';
 
-	$messages = raw_messages();
+}
 
-	//o($devices);
+
+
+
+// Get Devices.
+
+$devices = raw_devices();
+
+
+// Get Messages.
+
+$messages = raw_messages('ORDER BY id DESC');
+
+$dbpurges = raw_dbpurges('ORDER BY id DESC');
+
+//o($devices);
 
 ?>
 <!DOCTYPE html> 
@@ -54,7 +66,7 @@ th, td {
 			<tr>
 				<th>Device ID</th>
 				<th>Name</th>
-				<th>MAC Address</th>
+				<th>Date Joined</th>
 			</tr>
 			<?php
 
@@ -63,13 +75,17 @@ th, td {
 				<tr>
 					<td><?php echo $device['id']; ?></td>
 					<td><?php echo $device['name']; ?></td>
-					<td><?php echo $device['mac_address']; ?></td>
+					<td><?php echo gettime($device['date_joined']); ?></td>
 				</tr>
 				<?php
 			}
 
 			?>
 		</table>
+
+		<br>
+		<a href='/resetdb.php'>Reset Database.</a>
+		<br>
 
 		<!-- List all Messages. -->
 		<h2>Messages</h2>
@@ -94,7 +110,7 @@ th, td {
 					<td><?php echo $message['recipient_device_id']; ?></td>
 					<td><?php echo $message['data_text']; ?></td>
 					<td><?php echo $message['data_voice']; ?></td>
-					<td><?php echo $message['timestamp']; ?></td>
+					<td><?php echo gettime($message['timestamp']); ?></td>
 				</tr>
 				<?php
 			}
@@ -102,7 +118,26 @@ th, td {
 			?>
 		</table>
 
+		<!-- List all Database Purges. -->
+		<h2>Database Purges</h2>
+		<table>
+			<tr>
+				<th>Purge #</th>
+				<th>Timestamp</th>
+			</tr>
+			<?php
 
+			foreach ($dbpurges as $dbpurge) {
+				?>
+				<tr>
+					<td><?php echo $dbpurge['id']; ?></td>
+					<td><?php echo gettime($dbpurge['timestamp']); ?></td>
+				</tr>
+				<?php
+			}
+
+			?>
+		</table>
 
 	</body>
 
