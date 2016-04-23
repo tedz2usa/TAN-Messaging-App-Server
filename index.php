@@ -73,7 +73,7 @@ th, td {
 		<h1>TAN Messaging App</h1>
 
 		<!-- List all Devices. -->
-		<h2>Devices</h2>
+		<h2><a href='/devices.php?pretty=true' target='_blank'>Devices</a></h2>
 		<table>
 			<tr>
 				<th>Device ID</th>
@@ -100,7 +100,7 @@ th, td {
 		<br>
 
 		<!-- List all Messages. -->
-		<h2>Messages</h2>
+		<h2><a href='/messages.php?pretty=true' target='_blank'>Messages</a></h2>
 		<table>
 			<tr>
 				<th>Message ID</th>
@@ -131,7 +131,7 @@ th, td {
 		</table>
 
 		<!-- List all Database Purges. -->
-		<h2>Database Purges</h2>
+		<h2><a href='/dbpurges.php?pretty=true' target='_blank'>Database Purges</a></h2>
 		<table>
 			<tr>
 				<th>Purge #</th>
