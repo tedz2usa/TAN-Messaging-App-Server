@@ -20,7 +20,7 @@ if ($headers['Content-Type'] == 'application/json') {
 	$new_device = insert_new_device($data);
 	echo json_encode($new_device, JSON_PRETTY_PRINT);
 } else {
-	echo json_encode(raw_devices(), JSON_PRETTY_PRINT);
+	echo json_encode(raw_devices(), JSON_PRETTY_PRINT);// 'ORDER BY id DESC')
 }
 
 

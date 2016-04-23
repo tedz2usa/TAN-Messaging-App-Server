@@ -38,6 +38,18 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+a, a:visited {
+	color: blue;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
 table {
 	border-collapse: collapse;
 }
@@ -84,7 +96,7 @@ th, td {
 		</table>
 
 		<br>
-		<a href='/resetdb.php'>Reset Database.</a>
+		<a href='/resetdb.php'>Reset Database</a>
 		<br>
 
 		<!-- List all Messages. -->
