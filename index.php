@@ -38,6 +38,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+h2 {
+	padding-top: 15px;
+}
+
 a, a:visited {
 	color: blue;
 }
@@ -64,13 +68,27 @@ th, td {
 	padding-right: 15px;
 }
 
+a.apkbutton {
+	border: 1px solid #555;
+	padding: 10px;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: blue;
+	/*margin-bottom: 15px;*/
+	display: inline-block;
+	position: relative;
+	top: -5px;
+}
 
 
 </style>
 
 	</head>
 	<body>
-		<h1>TAN Messaging App</h1>
+		<h1 style='display:inline-block; margin-bottom: 5px;'>TAN Messaging App</h1>&nbsp;&nbsp;&nbsp;
+		<a class='apkbutton' href='/tanapp2.apk'>Download APK</a>
 
 		<!-- List all Devices. -->
 		<h2><a href='/devices.php?pretty=true' target='_blank'>Devices</a></h2>
@@ -108,7 +126,7 @@ th, td {
 				<th>Sender Device ID</th>
 				<th>Recipient Device ID</th>
 				<th>Data Text</th>
-				<th>Data Voice</th>
+				<!-- <th>Data Voice</th> -->
 				<th>Timestamp</th>
 			</tr>
 			<?php
@@ -121,7 +139,7 @@ th, td {
 					<td><?php echo $message['sender_device_id']; ?></td>
 					<td><?php echo $message['recipient_device_id']; ?></td>
 					<td><?php echo $message['data_text']; ?></td>
-					<td><?php echo $message['data_voice']; ?></td>
+					<!-- <td><?php echo $message['data_voice']; ?></td> -->
 					<td><?php echo gettime($message['timestamp']); ?></td>
 				</tr>
 				<?php

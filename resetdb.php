@@ -3,10 +3,10 @@
 
 require_once('include.php');
 
-$sql = 'DELETE FROM devices where id>3; ';
+$sql = 'DELETE FROM devices where id>0; ';
 $mysqli->query($sql);
 
-$sql = 'ALTER TABLE devices AUTO_INCREMENT = 4';
+$sql = 'ALTER TABLE devices AUTO_INCREMENT = 1';
 $mysqli->query($sql);
 
 
