@@ -87,8 +87,11 @@ a.apkbutton {
 
 	</head>
 	<body>
-		<h1 style='display:inline-block; margin-bottom: 5px;'>TAN Messaging App</h1>&nbsp;&nbsp;&nbsp;
+		<h1 style='display:inline-block; margin-bottom: 5px;'>TAN Messaging App</h1>
+		&nbsp;&nbsp;&nbsp;
 		<a class='apkbutton' href='/tanapp2.apk'>Download APK</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href='/Final_Project_Report_-_Team_TAN.pdf' target='_blank'>Read the final report here.</a>
 
 		<!-- List all Devices. -->
 		<h2><a href='/devices.php?pretty=true' target='_blank'>Devices</a></h2>
@@ -114,7 +117,7 @@ a.apkbutton {
 		</table>
 
 		<br>
-		<a href='/resetdb.php'>Reset Database</a>
+		<a href='#'>Reset Database</a>
 		<br>
 
 		<!-- List all Messages. -->
